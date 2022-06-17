@@ -21,14 +21,14 @@
 
 ## GETリクエスト
 
-ターミナルからGitHubに下記をリクエストしてみる。
+ターミナルからGitHubに下記をリクエストしてみる。  
 ```bash
 % curl https://api.github.com/zen
 Half measures are as bad as nothing at all.
 ```
 
 レスポンスにはGitHubのデザインフィロソフィーが表示される。  
-レスポンスの値は定期的に更新される。
+レスポンスの値は定期的に更新される。  
 
 
 ```bash
@@ -45,7 +45,7 @@ Half measures are as bad as nothing at all.
 }
 ```
 
-avatar_urlの値のhttps://avatars.githubusercontent.com/u/2?v=4 にアクセスすると表示される男性はGitHubのCEOです。
+avatar_urlの値のhttps://avatars.githubusercontent.com/u/2?v=4 にアクセスすると表示される男性はGitHubのCEOです。  
 
 `-i` オプションを付けてリクエストしてみる。
 ```bash
@@ -57,13 +57,13 @@ content-type: application/json; charset=utf-8
 cache-control: public, max-age=60, s-maxage=60
 ...
 ```
-ステータスラインに`HTTP/2 200`、レスポンスヘッダーに`content-type: application/json; charset=utf-8`が表示されることを確認する。
+ステータスラインに`HTTP/2 200`、レスポンスヘッダーに`content-type: application/json; charset=utf-8`が表示されることを確認する。  
 
-次に、個人アクセストークンを使ってプライベートな情報を取得してみる。
+次に、個人アクセストークンを使ってプライベートな情報を取得してみる。  
 
 `curl -i -u your_username:your_token https://api.github.com/user`
 
-についてyour_usernameとyour_tokenをそれぞれユーザー名、個人アクセストークンに置き換える。
+についてyour_usernameとyour_tokenをそれぞれユーザー名、個人アクセストークンに置き換える。  
 
 ```bash
 % curl -i -u yoshi-koyama:ghp_h2DilE9yTtEdpFfesxeOoKsL0c2eKEk3jAc https://api.github.com/user
@@ -81,7 +81,7 @@ content-type: application/json; charset=utf-8
 ステータスラインに`HTTP/2 200`、レスポンスヘッダーに`content-type: application/json; charset=utf-8`が表示されること。  
 レスポンスボディに自分のユーザー情報が表示されること。  
 
-試しに個人アクセストークンを適当に書き換えてリクエストしてみる。
+試しに個人アクセストークンを適当に書き換えてリクエストしてみる。  
 
 ```bash
 % curl -i -u yoshi-koyama:ghp_e2DilE9yTtEdpFfesxeOoKsL0c2eKEk3jAc https://api.github.com/user
@@ -108,6 +108,15 @@ Postmanを使って自分のユーザー情報を取得するリクエストを�
 
 <img width="1000" alt="スクリーンショット 2022-06-17 12 48 24" src="https://user-images.githubusercontent.com/62045457/174221076-b3923b5f-bfb7-4ff4-a788-07f34016cc13.png">
 
+ここまで完了したことをSlackにて共有しましょう。  
+共有内容は例えば、    
+- curlでユーザー情報が表示されること
+- Postmanの実行結果のキャプチャ
+などがよいです。  
+
+個人アクセストークンやレスポンス内容に個人情報が含まれていないことを気をつけてください。  
+レスポンス内容については全部を送る必要はないので適宜省略しましょう。  
+また、Slackにてコマンドの実行結果を共有する際にはバッククォート（`）を3つで囲むことによってコードブロックとして整形されますので活用してください。  
 
 ## POSTリクエスト
 
@@ -137,8 +146,8 @@ x-accepted-oauth-scopes: public_repo, repo
 }
 ```
 
-ステータスラインに`HTTP/2 404`、レスポンスヘッダーに`x-accepted-oauth-scopes: public_repo, repo`が表示されていること。
-レスポンスボディの`documentation_url`の値のリンクを読み取るとスコープが足りていないことがわかる。
+ステータスラインに`HTTP/2 404`、レスポンスヘッダーに`x-accepted-oauth-scopes: public_repo, repo`が表示されていること。  
+レスポンスボディの`documentation_url`の値のリンクを読み取るとスコープが足りていないことがわかる。  
 
 GitHubの個人アクセストークンからスコープを変更する。  
 repoにチェックを付ける。  
@@ -167,11 +176,11 @@ location: https://api.github.com/repos/yoshi-koyama/blog
   "html_url": "https://github.com/yoshi-koyama/blog",
 ```
 
-ステータスラインが`HTTP/2 201`であること。
-レスポンスヘッダーのlocationの値のリンクがblogリポジトリになっていること。
+ステータスラインが`HTTP/2 201`であること。  
+レスポンスヘッダーのlocationの値のリンクがblogリポジトリになっていること。  
 レスポンスボディのhtml_urlの値のリンク先にアクセスするとblogリポジトリが表示されること。  
 
-試しに同じリクエストをもう一度送ってみる。
+試しに同じリクエストをもう一度送ってみる。  
 
 ```bash
 % curl -i -X POST \
@@ -217,7 +226,7 @@ Postmanを使って自分のユーザー情報を取得するリクエストを�
 
 ## 参考
 
-今回のハンズオンの参考資料となった公式ドキュメントです。
+今回のハンズオンの参考資料となった公式ドキュメントです。  
 - [公式のチュートリアル](https://docs.github.com/ja/rest/guides/getting-started-with-the-rest-api)
 - [リポジトリの更新API仕様書](https://docs.github.com/ja/rest/repos/repos#update-a-repository)
 - [リポジトリの削除APIの仕様書](https://docs.github.com/ja/rest/repos/repos#delete-a-repository )
