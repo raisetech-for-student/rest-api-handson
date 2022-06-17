@@ -287,7 +287,7 @@ Postmanを使って自分のユーザー情報を取得するリクエストを�
 % curl -i -X PATCH \
   -H "Accept: application/vnd.github.v3+json" \
   -H "Authorization: token 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" \
-  https://api.github.com/repos/yoshi-koyama/blog \
+  https://api.github.com/repos/your_username/repository_name \
   -d '{
     "name":"hello-world-blog",
     "description":"This is your blog repository",
