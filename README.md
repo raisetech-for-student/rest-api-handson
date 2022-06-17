@@ -328,12 +328,13 @@ html_urlの値のURLにアクセスすると更新されたリポジトリのト
 
 
 試しに、nameを空文字指定して更新のリクエストを投げてみます。  
+your_usernameは自身のユーザー名、repository_nameの部分はhello-world-blogに書き換えましょう。
 
 ```bash
 % curl -i -X PATCH \
   -H "Accept: application/vnd.github.v3+json" \
   -H "Authorization: token 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" \
-  https://api.github.com/repos/yoshi-koyama/blog \
+  https://api.github.com/repos/your_username/repository_name \
   -d '{
     "name":""
   }'
