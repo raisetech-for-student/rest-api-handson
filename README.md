@@ -27,10 +27,10 @@
 Half measures are as bad as nothing at all.
 ```
 
-レスポンスにはGitHubのデザインフィロソフィーが表示される。  
-レスポンスの値は定期的に更新される。  
+レスポンスにはGitHubのデザインフィロソフィーが表示されること。  
+※レスポンスの値は定期的に更新される。  
 
-
+次に下記リクエストでとあるユーザーのプロフィール情報を取得してみる。  
 ```bash
 % curl https://api.github.com/users/defunkt
 {
@@ -45,7 +45,7 @@ Half measures are as bad as nothing at all.
 }
 ```
 
-avatar_urlの値のhttps://avatars.githubusercontent.com/u/2?v=4 にアクセスすると表示される男性はGitHubのCEOです。  
+avatar_urlの値のhttps://avatars.githubusercontent.com/u/2?v=4 にアクセスすると表示される男性はGitHubのCEO。  
 
 `-i` オプションを付けてリクエストしてみる。
 ```bash
