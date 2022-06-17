@@ -323,6 +323,9 @@ server: GitHub.com
 html_urlの値のURLにアクセスすると更新されたリポジトリのトップページが表示されること。  
 更新内容が反映されていることをUI上からも確認すること。  
 
+<img width="1636" alt="update-repository" src="https://user-images.githubusercontent.com/62045457/174275159-0bdece8c-ddcb-4c74-b2df-fe6b5544b5a4.png">
+
+
 試しに、nameを空文字指定して更新のリクエストを投げてみます。  
 
 ```bash
