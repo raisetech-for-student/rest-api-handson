@@ -81,7 +81,7 @@ content-type: application/json; charset=utf-8
 ステータスラインに`HTTP/2 200`、レスポンスヘッダーに`content-type: application/json; charset=utf-8`が表示されること。  
 レスポンスボディに自分のユーザー情報が表示されること。  
 
-試しに個人アクセストークンを適当に書き換えてリクエストしてみる。  
+試しに個人アクセストークンのghp_以降を1文字書き換えてリクエストしてみる。  
 
 ```bash
 % curl -i -u yoshi-koyama:ghp_e2DilE9yTtEdpFfesxeOoKsL0c2eKEk3jAc https://api.github.com/user
