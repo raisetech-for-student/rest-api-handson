@@ -121,7 +121,7 @@ Postmanを使って自分のユーザー情報を取得するリクエストを�
 ## POSTリクエスト
 
 リポジトリの登録をしてみます。  
-
+リクエストヘッダーのghp_から始まる個人アクセストークンは自分用のものに書き換えてください。  
 ```bash
 % curl -i -H "Authorization: token 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" \
     -d '{
@@ -148,6 +148,7 @@ x-accepted-oauth-scopes: public_repo, repo
 
 ステータスラインに`HTTP/2 404`、レスポンスヘッダーに`x-accepted-oauth-scopes: public_repo, repo`が表示されていること。  
 レスポンスボディの`documentation_url`の値のリンクを読み取るとスコープが足りていないことがわかる。  
+> repo scope to create a private repository.
 
 GitHubの個人アクセストークンからスコープを変更する。  
 repoにチェックを付ける。  
@@ -168,16 +169,24 @@ HTTP/2 201
 location: https://api.github.com/repos/yoshi-koyama/blog
 
 {
-  "id": 504386394,
-  "node_id": "R_kgDOHhBTWg",
+  ...
   "name": "blog",
-  "full_name": "yoshi-koyama/blog",
+  ...
+  "private": true,
   ...
   "html_url": "https://github.com/yoshi-koyama/blog",
+  ...
+  "created_at": "2022-06-17T06:51:16Z",
+  "updated_at": "2022-06-17T06:51:16Z",
+  ...
+  "visibility": "private",
+  ...
 ```
 
 ステータスラインが`HTTP/2 201`であること。  
 レスポンスヘッダーのlocationの値のリンクがblogリポジトリになっていること。  
+created_at（作成日時）、updated_at（更新日時）がリクエストしたときの日時になっていること。  
+visibilityの値がprivate、privateの値がtrueになっていること。  
 レスポンスボディのhtml_urlの値のリンク先にアクセスするとblogリポジトリが表示されること。  
 
 試しに同じリクエストをもう一度送ってみる。  
@@ -212,6 +221,40 @@ HTTP/2 422
 ステータスラインが`HTTP/2 422`であること。  
 レスポンスボディのmessageに`name already exists on this account`と表示されること。  
 
+またnameを空文字にして送信してみる。  
+
+```bash
+% curl -i -H "Authorization: token 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" \
+    -d '{
+        "name": ""
+      }' \
+    https://api.github.com/user/repos
+HTTP/2 422
+...
+
+{
+  "message": "Repository creation failed.",
+  "errors": [
+    {
+      "resource": "Repository",
+      "code": "missing_field",
+      "field": "name"
+    },
+    {
+      "resource": "Repository",
+      "code": "custom",
+      "field": "name",
+      "message": "name is too short (minimum is 1 character)"
+    }
+  ],
+  "documentation_url": "https://docs.github.com/rest/reference/repos#create-a-repository-for-the-authenticated-user"
+}
+```
+
+ステータスラインが`HTTP/2 422`であること。  
+レスポンスボディのmessageに`Repository creation failed.`と表示されること。  
+errors内を読むとnameフィールドが空文字であることが原因とわかるようになっていること。  
+
 Postmanを使って自分のユーザー情報を取得するリクエストを投げてみる。  
 
 <img width="1000" alt="スクリーンショット 2022-06-17 13 09 58" src="https://user-images.githubusercontent.com/62045457/174223192-77f61e1e-2f70-4189-8b17-4d48d4b30507.png">  
@@ -233,11 +276,12 @@ Postmanを使って自分のユーザー情報を取得するリクエストを�
 - リポジトリ名をblogからhell-world-blogに変更する
 - privateをpublicに変更
 - Aboutを"This is your blog repository"に変更
-- ホームページに"https://github.com"を設定
+- ホームページに"https://github.com" を設定
+
 
 下記リクエストはyour_usernameとrepository_nameについて自分のユーザー名と前段階で登録したレポジトリ名（blog）に置き換えてください。  
-リクエスト内容は [リポジトリの更新API仕様書](https://docs.github.com/ja/rest/repos/repos#update-a-repository) を参考にしています。　　 
 リクエストヘッダーのghp_から始まる個人アクセストークンも同様です。  
+リクエスト内容は [リポジトリの更新API仕様書](https://docs.github.com/ja/rest/repos/repos#update-a-repository) を参考にしています。　  
 ```bash
 % curl -i -X PATCH \
   -H "Accept: application/vnd.github.v3+json" \
