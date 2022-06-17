@@ -224,6 +224,111 @@ Postmanを使って自分のユーザー情報を取得するリクエストを�
 
 <img width="1217" alt="スクリーンショット 2022-06-17 13 11 21" src="https://user-images.githubusercontent.com/62045457/174223319-f03049e4-c9cb-407f-a324-fab342759b6a.png">  
 
+ここまで完了したことをSlackにて共有しましょう。  
+全リクエストの結果を送る必要はなくいくつか試したうちの1つを送信してもらえれば大丈夫です。  
+
+## PATCHリクエスト
+
+作成したリポジトリの下記部分を変更します。
+- リポジトリ名をblogからhell-world-blogに変更する
+- privateをpublicに変更
+- Aboutを"This is your blog repository"に変更
+- ホームページに"https://github.com"を設定
+
+下記リクエストはyour_usernameとrepository_nameについて自分のユーザー名と前段階で登録したレポジトリ名（blog）に置き換えてください。  
+リクエスト内容は [リポジトリの更新API仕様書](https://docs.github.com/ja/rest/repos/repos#update-a-repository) を参考にしています。　　 
+リクエストヘッダーのghp_から始まる個人アクセストークンも同様です。  
+```bash
+% curl -i -X PATCH \
+  -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: token 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" \
+  https://api.github.com/repos/yoshi-koyama/blog \
+  -d '{
+    "name":"hello-world-blog",
+    "description":"This is your blog repository",
+    "homepage":"https://github.com",
+    "private":false
+  }'
+HTTP/2 200
+server: GitHub.com
+...
+
+{
+  ...
+  "name": "hello-world-blog",
+  ...
+  "private": false,
+  ...
+  "html_url": "https://github.com/yoshi-koyama/hello-world-blog",
+  "description": "This is your blog repository",
+  ...
+  "created_at": "2022-06-17T06:00:35Z",
+  "updated_at": "2022-06-17T06:02:42Z",
+  ...
+  "homepage": "https://github.com",
+  ...
+  "visibility": "public",
+  ...
+```
+
+ステータスラインがHTTP/2 200であること。  
+レスポンスボディを確認して項目が期待通り更新されていること。  
+
+またupdated_atがリクエストした日時になっていること。  
+
+html_urlの値のURLにアクセスすると更新されたリポジトリのトップページが表示されること。  
+更新内容が反映されていることをUI上からも確認すること。  
+
+試しに、nameを空文字指定して更新のリクエストを投げてみます。  
+
+```bash
+% curl -i -X PATCH \
+  -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: token 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" \
+  https://api.github.com/repos/yoshi-koyama/blog \
+  -d '{
+    "name":""
+  }'
+HTTP/2 422
+...
+
+{
+  "message": "Validation Failed",
+  "errors": [
+    {
+      "resource": "Repository",
+      "code": "custom",
+      "field": "name",
+      "message": "name is too short (minimum is 1 character)"
+    }
+  ],
+  "documentation_url": "https://docs.github.com/rest/reference/repos#update-a-repository"
+}
+```
+
+ステータスラインがHTTP/2 422であること。  
+レスポンスボディに"Validation Failed"と表示されていること。  
+
+GitHubのAPIでは入力値が不正であるバリデーションエラーの場合にはHTTPステータスコード422で返すようドキュメントに記載されています。
+
+ここまで試したことをPostmanを使って自分のユーザー情報を取得するリクエストを投げてみましょう。  
+
+ここまで完了したことをSlackにて共有しましょう。  
+全リクエストの結果を送る必要はなくいくつか試したうちの1つを送信してもらえれば大丈夫です。  
+
+## まとめ
+
+以上でハンズオンは終了です。  
+お疲れさまでした。
+
+もし余裕がある人は作成したリポジトリの削除も試してみてください。
+
+ドキュメントは下記を参考にしましょう。
+
+https://docs.github.com/ja/rest/repos/repos#delete-a-repository  
+
+注意点として、個人アクセストークンのスコープの変更が必要です。
+
 ## 参考
 
 今回のハンズオンの参考資料となった公式ドキュメントです。  
