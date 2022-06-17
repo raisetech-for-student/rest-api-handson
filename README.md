@@ -103,6 +103,7 @@ Postmanを使って自分のユーザー情報を取得するリクエストを�
 <img width="1000" alt="スクリーンショット 2022-06-17 12 46 03" src="https://user-images.githubusercontent.com/62045457/174220865-bd76c2b3-09ce-4db8-af9c-02780d678c47.png">  
 
 レスポンスのステータスコード、ボディ、レスポンスヘッダーにcurlでリクエストしたときと相違ないことを確認する。  
+パスワードはGitHubのパスワードではなく個人アクセストークンを設定する。  
 ※レスポンスヘッダー全ては確認不要です。  
 <img width="1000" alt="スクリーンショット 2022-06-17 12 48 03" src="https://user-images.githubusercontent.com/62045457/174221060-880e8b5c-0017-44d7-b3ae-9eb56b9707b8.png">  
 
