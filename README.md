@@ -17,7 +17,8 @@
 - 個人アクセストークン（Personal Access Token）が必要です
   - Scopeのチェックは何もつけなくても大丈夫です
 - Terminal（Git for WindowsなどでもOK）を使います
-- [Postman](https://www.postman.com/)のダウンロードをしておきましょう
+- [Postman](https://www.postman.com/downloads/)のダウンロードをしておきましょう
+  - PostmanにはDesktop版とWeb版があります。ハンズオンではDesktop版を使うようにしてください。
 
 ## GETリクエスト
 
