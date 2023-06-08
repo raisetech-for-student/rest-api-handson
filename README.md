@@ -130,7 +130,7 @@ Postmanを使って自分のユーザー情報を取得するリクエストを�
         "name": "blog",
         "auto_init": true,
         "private": true,
-        "gitignore_template": "nanoc"
+        "gitignore_template": "Nanoc"
       }' \
     https://api.github.com/user/repos
 HTTP/2 404
@@ -163,7 +163,7 @@ repoにチェックを付ける。
         "name": "blog",
         "auto_init": true,
         "private": true,
-        "gitignore_template": "nanoc"
+        "gitignore_template": "Nanoc"
       }' \
     https://api.github.com/user/repos
 HTTP/2 201
@@ -200,7 +200,7 @@ visibilityの値がprivate、privateの値がtrueになっていること。
         "name": "blog",
         "auto_init": true,
         "private": true,
-        "gitignore_template": "nanoc"
+        "gitignore_template": "Nanoc"
       }' \
     https://api.github.com/user/repos
 HTTP/2 422
