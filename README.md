@@ -260,6 +260,8 @@ errors内を読むとnameフィールドが空文字であることが原因と�
 Postmanを使って自分のユーザー情報を取得するリクエストを投げてみる。  
 キャプチャ内のリクエストボディのnameはblog02としているが、これは同じ名前のリポジトリ名は作れないので名前を変えているだけである。
 
+※キャプチャの nanoc ですが、最新の仕様では Nanoc が正しいです。 Nanoc に変更した上で Send ボタンを押してください。
+
 <img width="1000" alt="スクリーンショット 2022-06-17 13 09 58" src="https://user-images.githubusercontent.com/62045457/174223192-77f61e1e-2f70-4189-8b17-4d48d4b30507.png">  
 
 <img width="1000" alt="スクリーンショット 2022-06-17 13 09 16" src="https://user-images.githubusercontent.com/62045457/174223219-3c900a72-e716-40da-aad6-9e1bd23333db.png">  
